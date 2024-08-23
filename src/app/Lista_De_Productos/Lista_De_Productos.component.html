@@ -1,0 +1,75 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Lista de Productos</h2>
+  <ul class="list-group mb-4">
+    <li *ngFor="let product of products" class="list-group-item">
+      <h3 class="h5">{{ product.nombre }}</h3>
+      <p>Descripción: {{ product.descripcion | titlecase }}</p>
+      <p>Precio: {{ product.precio | currency:'$':'symbol':'1.2-2' }}</p>
+      <p>Fecha de lanzamiento: {{ product.releaseDate | date:'dd/MM/yyyy' }}</p>
+    </li>
+  </ul>
+
+  <h3 class="mb-3">Ejemplos de uso del MomentPipe:</h3>
+
+  <!-- Formatear una fecha -->
+  <div class="mb-3">
+    <label class="form-label">Fecha para formatear:</label>
+    <input type="text" class="form-control" [(ngModel)]="inputDate" placeholder="Ingresa una fecha (YYYY-MM-DD)">
+    <p class="mt-2">Resultado: {{ inputDate | moment:'Format': formatString }}</p>
+  </div>
+
+  <!-- Obtener el día de la semana -->
+<!-- Obtener el día de la semana -->
+<div class="mb-3">
+  <label class="form-label">Fecha para obtener el día de la semana:</label>
+  <input type="text" class="form-control" [(ngModel)]="inputDate" placeholder="Ingresa una fecha (YYYY-MM-DD)">
+  <p class="mt-2">Resultado: {{ inputDate | moment:'Format':'dddd' }}</p>
+</div>
+
+
+  <!-- Restar días a una fecha -->
+  <div class="mb-3">
+    <label class="form-label">Fecha para restar días:</label>
+    <input type="text" class="form-control" [(ngModel)]="inputDate" placeholder="Ingresa una fecha (YYYY-MM-DD)">
+    <label class="form-label mt-2">Días a restar:</label>
+    <input type="number" class="form-control" [(ngModel)]="subtractDays" placeholder="Cantidad de días a restar">
+    <p class="mt-2">Resultado: {{ inputDate | moment:'Subtract': subtractDays }}</p>
+  </div>
+  
+
+  <!-- Sumar horas a una fecha -->
+  <div class="mb-3">
+    <label class="form-label">Fecha para sumar horas:</label>
+    <input type="text" class="form-control" [(ngModel)]="inputDate" placeholder="Ingresa una fecha y hora (YYYY-MM-DD HH:mm:ss)">
+    <label class="form-label mt-2">Horas a sumar:</label>
+    <input type="number" class="form-control" [(ngModel)]="addHours" placeholder="Cantidad de horas a sumar">
+    <p class="mt-2">Resultado: {{ inputDate | moment:'Add': addHours }}</p>
+  </div>
+
+  <!-- Diferencia entre dos fechas en días -->
+  <div class="mb-3">
+    <label class="form-label">Fecha inicial para la diferencia:</label>
+    <input type="text" class="form-control" [(ngModel)]="diffStartDate" placeholder="Ingresa la fecha inicial (YYYY-MM-DD)">
+    <label class="form-label mt-2">Fecha final para la diferencia:</label>
+    <input type="text" class="form-control" [(ngModel)]="diffEndDate" placeholder="Ingresa la fecha final (YYYY-MM-DD)">
+    <p class="mt-2">Diferencia en días: {{ diffStartDate | moment:'Diff':'days':diffEndDate }}</p>
+  </div>
+
+  <!-- Verificar si una fecha está antes de otra -->
+  <div class="mb-3">
+    <label class="form-label">Fecha para verificar si está antes:</label>
+    <input type="text" class="form-control" [(ngModel)]="inputDate" placeholder="Ingresa la primera fecha (YYYY-MM-DD)">
+    <label class="form-label mt-2">Fecha de comparación:</label>
+    <input type="text" class="form-control" [(ngModel)]="beforeAfterDate" placeholder="Ingresa la segunda fecha (YYYY-MM-DD)">
+    <p class="mt-2">Es antes: {{ inputDate | moment:'Before': beforeAfterDate }}</p>
+  </div>
+
+  <!-- Verificar si una fecha está después de otra -->
+  <div class="mb-3">
+    <label class="form-label">Fecha para verificar si está después:</label>
+    <input type="text" class="form-control" [(ngModel)]="inputDate" placeholder="Ingresa la primera fecha (YYYY-MM-DD)">
+    <label class="form-label mt-2">Fecha de comparación:</label>
+    <input type="text" class="form-control" [(ngModel)]="beforeAfterDate" placeholder="Ingresa la segunda fecha (YYYY-MM-DD)">
+    <p class="mt-2">Es después: {{ inputDate | moment:'After': beforeAfterDate }}</p>
+  </div>
+</div>
